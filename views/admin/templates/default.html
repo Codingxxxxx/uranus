@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% if $AppConfig.NODE_ENV === 'development' %}
+    {{ viteDevScript() | safe }}
+  {% endif %}
+  <script src="/src/client/admin/script/core/main.js" type="module"></script>
+</head>
+<body>
+  {% block main %} {% endblock %}
+</body>
+</html>
