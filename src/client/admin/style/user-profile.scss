@@ -1,10 +1,12 @@
 .user-profile {
+  border-color: var(--bs-gray-600) !important;
   img {
     width: var(--user-avatar-width);
     height: var(--user-avatar-height);
     object-fit: cover; 
   }
   .username {
+    font-size: var(--user-avatar-username-fs);
     color: var(--bs-gray-300);
   } 
 }

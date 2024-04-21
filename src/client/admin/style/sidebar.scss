@@ -9,6 +9,8 @@
       a {
         color: var(--sidebar-inactive-color);
         letter-spacing: .3px;
+        font-size: .875rem;
+        font-family: Inter;
         &.active {
           color: var(--sidebar-active-color);
           background-color: var(--sidebar-active-bg);
