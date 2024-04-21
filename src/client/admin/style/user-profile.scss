@@ -1,0 +1,10 @@
+.user-profile {
+  img {
+    width: var(--user-avatar-width);
+    height: var(--user-avatar-height);
+    object-fit: cover; 
+  }
+  .username {
+    color: var(--bs-gray-300);
+  } 
+}

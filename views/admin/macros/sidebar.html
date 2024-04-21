@@ -1,0 +1,59 @@
+{% from 'admin/macros/user-profile.html' import UserProfile %}
+
+{% set sidebarMenus = [
+    {
+      title: 'Dashboard',
+      link: '/',
+      icon: 'mdi-home-variant-outline',
+      moduleCode: 'DASHBOARD'
+    },
+    {
+      title: 'Products',
+      link: '/products',
+      icon: 'mdi-package-variant-closed',
+      moduleCode: 'PRODUCT'
+    },
+    {
+      title: 'Category',
+      link: '/categories',
+      icon: 'mdi-shape',
+      moduleCode: 'CATEGORY'
+    },
+    {
+      title: 'Brands',
+      link: '/brands',
+      icon: 'mdi-domain',
+      moduleCode: 'BRAND'
+    },
+    {
+      title: 'Promotions',
+      link: '/promotions',
+      icon: 'mdi-sale',
+      moduleCode: 'PROMOTION'
+    },
+    {
+      title: 'Users',
+      link: '/users',
+      icon: 'mdi-account-supervisor',
+      moduleCode: 'USER'
+    }
+  ] 
+%}
+
+{% macro SideBar(activeModule) %}
+<aside class="admin-sidebar p-2">
+  {{ UserProfile('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR__2IIAULCR-xberpmuxf-9Jx3cJZLJgLm4tSb9cDwRQ&s', 'Jonas') }}
+  <ul class="list-unstyled">
+    {% for menuItem in sidebarMenus %}
+    <li>
+      <a 
+        class="d-block pe-5 fw-medium rounded-2 w-100 px-3 py-2 text-decoration-none {{ 'active' if activeModule == menuItem.moduleCode }}" 
+        href="{{ menuItem.link }}">
+        <span class="iconify d-inline-block me-1" data-icon="{{ menuItem.icon }}"></span>
+        {{ menuItem.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endmacro %}

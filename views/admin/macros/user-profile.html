@@ -1,0 +1,6 @@
+{% macro UserProfile(imageSrc, username) %}
+<div class="user-profile d-flex flex-column justify-content-center align-items-center">
+  <img class="rounded-circle" src="{{ imageSrc }}" />
+  <span class="username d-block my-2 fw-semibold">{{ username }}</span>
+</div>
+{% endmacro %}

@@ -1,1 +1,19 @@
 @import '../../shared/customb-bootstrap.scss';
+// @import '../../../../node_modules/@mdi/font/css/materialdesignicons.min.css';
+@import './sidebar.scss';
+@import './user-profile.scss';
+
+:root {
+  --sidebar-inactive-color: var(--bs-gray-500);
+  --sidebar-active-color: var(--bs-gray-100);
+  --sidebar-active-bg: var(--bs-gray-800);
+  --sidebar-bg: #12181a;
+  --sidebar-min-width: 230px;
+  --main-content-bg: #F8F9FE;
+  --user-avatar-height: 86px;
+  --user-avatar-width: auto;
+}
+
+.main-content {
+  background-color: var(--main-content-bg);
+}

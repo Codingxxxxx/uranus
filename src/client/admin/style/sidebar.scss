@@ -1,0 +1,23 @@
+.admin-sidebar {
+  background-color: var(--sidebar-bg);
+  min-width: var(--sidebar-min-width);
+  ul {
+    li {
+      &:first-child {
+        margin-top: 1rem;
+      }
+      a {
+        color: var(--sidebar-inactive-color);
+        letter-spacing: .3px;
+        &.active {
+          color: var(--sidebar-active-color);
+          background-color: var(--sidebar-active-bg);
+        }
+
+        .iconify {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

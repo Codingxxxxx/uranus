@@ -1,15 +1,25 @@
+{% from 'admin/macros/sidebar.html' import SideBar %}
+{% from 'admin/macros/navbar.html' import Navbar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>{% block pageTitle %} {% endblock %} | {{ $AppConfig.APP_NAME }}</title>
+  {% include 'admin/partials/font.html' %}
   {% if $AppConfig.NODE_ENV === 'development' %}
     {{ viteDevScript() | safe }}
   {% endif %}
+  <script src="//code.iconify.design/1/1.0.6/iconify.min.js" defer></script>
   <script src="/src/client/admin/script/core/main.js" type="module"></script>
 </head>
-<body>
-  {% block main %} {% endblock %}
+<body class="vh-100 w-100">
+  <div class="d-flex w-100 h-100">
+    {{ SideBar($page.sidebar.active, $AppConfig.APP_NAME) }}
+    <main class="d-flex flex-column main-content flex-grow-1">
+      {{ Navbar() }}
+      {% block main %}{% endblock %}
+    </main>
+  </div>
 </body>
 </html>
