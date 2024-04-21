@@ -1,5 +1,4 @@
 {% from 'admin/macros/sidebar.html' import SideBar %}
-{% from 'admin/macros/navbar.html' import Navbar %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,6 @@
   <div class="d-flex w-100 h-100">
     {{ SideBar($page.sidebar.active, $AppConfig.APP_NAME) }}
     <main class="d-flex flex-column main-content flex-grow-1">
-      {{ Navbar() }}
       {% block main %}{% endblock %}
     </main>
   </div>

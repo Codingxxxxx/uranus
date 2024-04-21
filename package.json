@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@commitlint/cli": "^19.2.2",
+    "@commitlint/config-conventional": "^19.2.2",
     "bootstrap": "^5.3.3",
     "commitlint": "^19.2.1",
     "eslint": "^8.57.0",
