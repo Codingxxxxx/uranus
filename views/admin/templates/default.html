@@ -9,11 +9,13 @@
   {% if $AppConfig.NODE_ENV === 'development' %}
     {{ viteDevScript() | safe }}
   {% endif %}
+  <script src="/src/client/admin/script/core/page-loading.js"></script>
   <script src="//code.iconify.design/1/1.0.6/iconify.min.js" defer></script>
   <script src="/src/client/admin/script/core/main.js" type="module"></script>
 </head>
-<body class="vh-100 w-100">
-  <div class="d-flex w-100 h-100">
+<body class="vh-100 min-vh-100 w-100">
+  {% include 'admin/partials/page-loading.html' %}
+  <div id="contentWrapper" class="vh-100 w-100" style="opacity: 0;">
     {{ SideBar($page.sidebar.active, $AppConfig.APP_NAME) }}
     <main class="d-flex flex-column main-content flex-grow-1">
       {% block main %}{% endblock %}

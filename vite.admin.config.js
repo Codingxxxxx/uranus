@@ -5,7 +5,8 @@ import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 const BASE_ADMIN_PATH = 'src/client/admin/script';
 
 const adminScripts = [
-  'core/main.js'
+  'core/main.js',
+  'core/page-loading.js'
 ];
 
 export default defineConfig({

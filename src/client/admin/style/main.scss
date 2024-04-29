@@ -2,6 +2,7 @@
 // @import '../../../../node_modules/@mdi/font/css/materialdesignicons.min.css';
 @import './sidebar.scss';
 @import './user-profile.scss';
+@import './page-loading.scss';
 
 :root {
   --sidebar-inactive-color: var(--bs-gray-500);
@@ -15,6 +16,14 @@
   --user-avatar-username-fs: 1.2rem;
 }
 
+#contentWrapper {
+  opacity: 0;
+  transition: opacity 300ms ease;
+  &.page-loaded {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+}
 .main-content {
   background-color: var(--main-content-bg);
 }
