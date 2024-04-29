@@ -7,7 +7,8 @@ const CollectionName = {
   Product: 'products',
   Order: 'orders',
   Customer: 'customers',
-  Promotion: 'promotions'
+  Promotion: 'promotions',
+  Transaction: 'transactions'
 };
 
 const UserStatus = {
@@ -25,9 +26,16 @@ const PromotionType = {
   Percentage: '%'
 };
 
+const TransactionStatus = {
+  Pending: 'PENDING',
+  Failed: 'FAILED',
+  Completed: 'COMPLETEd'
+};
+
 module.exports = {
   CollectionName,
   UserStatus,
   PromotionStatus,
-  PromotionType
+  PromotionType,
+  TransactionStatus
 };
