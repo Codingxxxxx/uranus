@@ -8,7 +8,8 @@ const CollectionName = {
   Order: 'orders',
   Customer: 'customers',
   Promotion: 'promotions',
-  Transaction: 'transactions'
+  Transaction: 'transactions',
+  Brand: 'brands'
 };
 
 const UserStatus = {

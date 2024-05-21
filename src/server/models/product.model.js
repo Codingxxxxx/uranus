@@ -46,7 +46,23 @@ const schema = new Schema(
               type: Number,
               required: true,
               default: 0
-            }
+            },
+            pictures: [
+              {
+                fileUrl: {
+                  type: String
+                },
+                filename: {
+                  type: String
+                },
+                mimetype: {
+                  type: String
+                },
+                size: {
+                  type: Number
+                }
+              }
+            ]
           }
         ]
       }
