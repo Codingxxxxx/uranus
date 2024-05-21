@@ -1,5 +1,5 @@
 const { SchemaTypes } = require('mongoose');
-const { MongoCollection } = require('../const');
+const { CollectionName } = require('../const').Mongo;
 
 const baseModel = {
   createdAt: {
@@ -9,18 +9,18 @@ const baseModel = {
   },
   createdBy: {
     type: SchemaTypes.ObjectId,
-    ref: MongoCollection.User
+    ref: CollectionName.User
   },
   deletedAt: {
     type: Date
   },
   deletedBy: {
     type: SchemaTypes.ObjectId,
-    ref: MongoCollection.User
+    ref: CollectionName.User
   },
   lastUpdateBy: {
     type: SchemaTypes.ObjectId,
-    ref: MongoCollection.User
+    ref: CollectionName.User
   }
 };
 
