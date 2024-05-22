@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block script %}
-  <script src="/src/client/admin/script/auth/login.js" type="module"></script>
+  {{ script('src/client/admin/script/auth/login.js', true, true) }}
 {% endblock %}
 
 {% block main %}

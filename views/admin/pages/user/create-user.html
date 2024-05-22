@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block script %}
-  <script src="/src/client/admin/script/user/create-user.js" type="module"></script>
+  {{ script('/src/client/admin/script/user/create-user.js', true) }}
 {% endblock %}
 
 {% block main %}
