@@ -4,7 +4,10 @@ const {
   PORT,
   HOST,
   MONGO_URI,
-  SESSION_SECRET
+  SESSION_SECRET,
+  PBKDF2_KEYLEN,
+  PBKDF2_ITERATION,
+  PBKDF2_DIGEST
 } = process.env;
 
 const AppConfig = {
@@ -13,7 +16,10 @@ const AppConfig = {
   PORT,
   HOST,
   MONGO_URI,
-  SESSION_SECRET
+  SESSION_SECRET,
+  PBKDF2_KEYLEN: Number(PBKDF2_KEYLEN),
+  PBKDF2_ITERATION: Number(PBKDF2_ITERATION),
+  PBKDF2_DIGEST
 };
 
 module.exports = {

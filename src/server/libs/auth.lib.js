@@ -1,4 +1,5 @@
 const { createHash, pbkdf2, randomBytes } = require('crypto');
+const { AppConfig } = require('../const');
 
 /**
  * Generate random long string
@@ -30,10 +31,17 @@ async function hashPassword(plainText, salt) {
   salt = Buffer.from(salt || await generateRandomSalt(), 'base64');
   const passwordAsBytes = Buffer.from(plainText);
   return new Promise((resolve, reject) => {
-    pbkdf2(passwordAsBytes, salt, 10000, 64, 'sha256', (err, newPass) => {
-      if (err) return reject(err);
-      resolve([newPass.toString('base64'), salt.toString('base64')]);
-    });
+    pbkdf2(
+      passwordAsBytes,
+      salt,
+      AppConfig.PBKDF2_ITERATION,
+      AppConfig.PBKDF2_KEYLEN,
+      AppConfig.PBKDF2_DIGEST,
+      (err, newPass) => {
+        if (err) return reject(err);
+        resolve([newPass.toString('base64'), salt.toString('base64')]);
+      }
+    );
   });
 }
 
