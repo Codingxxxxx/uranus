@@ -6,7 +6,8 @@ const BASE_ADMIN_PATH = 'src/client/admin/script';
 
 const adminScripts = [
   'core/main.js',
-  'core/page-loading.js'
+  'core/page-loading.js',
+  'user/create-user.js'
 ];
 
 export default defineConfig({

@@ -3,6 +3,8 @@
 @import './sidebar.scss';
 @import './user-profile.scss';
 @import './page-loading.scss';
+@import './form.scss';
+@import './toast.scss';
 
 :root {
   --sidebar-inactive-color: var(--bs-gray-500);
@@ -10,10 +12,16 @@
   --sidebar-active-bg: var(--bs-gray-800);
   --sidebar-bg: #12181a;
   --sidebar-min-width: 230px;
-  --main-content-bg: #F8F9FE;
-  --user-avatar-height: 128px;
+  --main-content-bg: var(--bs-light);
+  --user-avatar-height: 96px;
   --user-avatar-width: auto;
   --user-avatar-username-fs: 1.2rem;
+  --form-content-padding: 3rem;
+  --form-title-padding: 3rem;
+  --form-title-font-family: Inter;
+  --form-tooltip-font-size: 1.10rem;
+  --fs-sm: .875rem;
+  --fs-tiny: .775rem;
 }
 
 #contentWrapper {
@@ -24,6 +32,11 @@
     opacity: 1 !important;
   }
 }
+
 .main-content {
   background-color: var(--main-content-bg);
+}
+
+.font-title {
+  font-family: var(--form-title-family);
 }

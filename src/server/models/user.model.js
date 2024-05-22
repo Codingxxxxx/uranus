@@ -4,6 +4,16 @@ const { baseModel } = require('./base-schema.model');
 
 const schema = new Schema(
   {
+    firstname: {
+      type: String,
+      required: true,
+      maxLength: 50
+    },
+    lastname: {
+      type: String,
+      required: true,
+      maxLength: 50
+    },
     username: {
       type: String,
       required: true,

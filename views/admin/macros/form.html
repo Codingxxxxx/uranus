@@ -1,0 +1,69 @@
+{% macro FormInput(props) %}
+  <input 
+    id="{{ props.id }}"
+    class="form-control"
+    name="{{ props.name or props.id }}"
+    type="{{ props.type or 'text' }}"
+    placeholder="{{ props.placeholder or '' }}"
+  />
+{% endmacro %}
+
+{% macro FormLabel(props) %}
+  {% set tooltipAttribute = ('data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="' + props.tooltipHtml + '" data-bs-custom-class="form-tooltip" data-bs-title="' + (props.tooltipTitle or '') + '"') | safe %}
+  <label for="{{ props.for }}" class="form-label">
+    {{ props.label }}
+    {% if props.enableTooltip %}
+      <span class="custom-tooltip" {{ tooltipAttribute }}>
+        <span class="iconify tooltip-icon d-inline-block me-1" role="button" data-icon="mage:question-mark-circle"></span>
+      </span>
+    {% endif %}
+  </label>
+{% endmacro %}
+
+{% macro FormSelect(props) %}
+  <select id="{{ props.id }}" class="form-select" name="{{ props.name or props.id }}">
+    {% for option in props.options or [] %}
+      <option value="{{ option.value }}">{{ option.label }}</option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{% macro FormGroup() %}
+  <div class="form-group">
+    {{ caller() }}
+  </div>
+{% endmacro %}
+
+{% macro InputGroup(props) %}
+  <div class="input-group flex-nowrap">
+    {{ caller() }}
+  </div>
+{% endmacro %}
+
+{% macro InputGroupText(props) %}
+  <div class="input-group-text">
+    {{ caller() }}
+  </div>
+{% endmacro %}
+
+{% macro ButtonSubmit(props) %}
+  <button id="{{ props.id or 'btnSubmit' }}" class="btn btn-primary {{ props.class or '' }}">{{ props.label or 'Submit' }} </button>
+{% endmacro %}
+
+{% macro ErrorField(props) %}
+  <label id="{{ props.id }}" for="{{ props.fieldId }}" class="invalid-field"></label>
+{% endmacro %}
+
+{% macro CommonInput(props) %}
+  {% call FormGroup() %}
+    {{ FormLabel({ for: props.id, label: props.label, enableTooltip: props.enableTooltip, tooltipTitle: props.tooltipTitle }) }}
+    {{ FormInput({ id: props.id, name: props.name, type: props.type, placeholder: props.placeholder }) }}
+  {% endcall %}
+{% endmacro %}
+
+{% macro CommonSelect(props) %}
+  {% call FormGroup() %}
+    {{ FormLabel({ for: props.id, label: props.label, enableTooltip: props.enableTooltip, tooltipTitle: props.tooltipTitle }) }}
+    {{ FormSelect({ id: props.id, options: props.options, name: props.name }) }}
+  {% endcall %}
+{% endmacro %}

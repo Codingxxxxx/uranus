@@ -1,0 +1,31 @@
+.toast {
+  &.toast-danger {
+    .toast-header  {
+      background: var(--bs-danger);
+      color: var(--bs-gray-300);
+    }
+
+    .toast-body {
+      .toast-message {
+        color: var(--bs-danger);
+      }
+    }
+  }
+
+  &.toast-success {
+    .toast-header  {
+      background: var(--bs-success);
+      color: var(--bs-gray-300);
+    }
+    
+    .toast-body {
+      .toast-message {
+        color: var(--bs-success);
+      }
+    }
+  }
+
+  .toast-body {
+    font-weight: 500;
+  }
+} 

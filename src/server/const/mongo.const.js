@@ -33,10 +33,16 @@ const TransactionStatus = {
   Completed: 'COMPLETEd'
 };
 
+const UserRole = {
+  Limited: 'Limited',
+  ADMIN: 'Admin'
+};
+
 module.exports = {
   CollectionName,
   UserStatus,
   PromotionStatus,
   PromotionType,
-  TransactionStatus
+  TransactionStatus,
+  UserRole
 };

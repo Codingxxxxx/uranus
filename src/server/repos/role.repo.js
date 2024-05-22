@@ -11,8 +11,17 @@ function createRoles(roles) {
   return RoleModel.create(roles);
 }
 
+/**
+ * Get all roles data
+ * @returns {Promise<Object[]>}
+ */
+function getAll() {
+  return RoleModel.find().lean();
+}
+
 const RoleRepository = {
-  createRoles
+  createRoles,
+  getAll
 };
 
 module.exports = {

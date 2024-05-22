@@ -1,0 +1,45 @@
+{% extends 'admin/templates/default.html' %}
+{% from 'admin/macros/form.html' import CommonInput, CommonSelect, InputGroup, InputGroupText, FormInput, FormGroup, FormLabel, ButtonSubmit, ErrorField %}
+
+{% block pageTitle %}
+  Create User
+{% endblock %}
+
+{% block script %}
+  <script src="/src/client/admin/script/user/create-user.js" type="module"></script>
+{% endblock %}
+
+{% block main %}
+  <div class="form-wrapper size-sm">
+    <div class="form-title">
+      <span>Create User</span>
+      <span class="sub-title">Create an admin account for other users</span>
+    </div>
+    <form id="formCreateUser" class="form-main" novalidate  >
+      <!-- first name -->
+      {{ CommonInput({ id: 'firstname', label: 'First Name' }) }}
+      <!-- last name -->
+      {{ CommonInput({ id: 'lastname', label: 'Last Name' }) }}
+      <!-- username -->
+      {{ CommonInput({ id: 'username', label: 'Username' }) }}
+      <!-- default password -->
+      {% call FormGroup() %}
+        {{ FormLabel({ for: 'password', label: 'Default Password', enableTooltip: true, tooltipHtml: true, tooltipTitle: 'By default system will use password 123456 by default. You can customize default user password by tick the checkbox and enter default password for the user' }) }}
+        {% call InputGroup() %}
+          {% call InputGroupText() %}
+            <input id="checkboxCustomDefaultPassword" class="form-check-input mt-0" type="checkbox">
+          {% endcall %}
+          {{ FormInput({ id: 'password', type: 'password' }) }}
+        {% endcall %}
+      {% endcall %}
+      <!-- role selection -->
+      {{ CommonSelect({ id: 'role', label: 'Role', options: $page.data.roles or [] }) }}
+      <!-- btn sbumit -->
+      {{  ButtonSubmit({ class: 'w-100' }) }}
+    </form>
+  </div>
+{% endblock %}
+
+{% block body %}
+  {% include 'admin/partials/toast.html' %}
+{% endblock %}

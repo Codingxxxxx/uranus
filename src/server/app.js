@@ -1,6 +1,7 @@
 console.table(require('dotenv').config().parsed);
 const express = require('express');
 const app = express();
+const { connect } = require('mongoose');
 
 const { AppConfig } = require('./const');
 const { initVite, initNunjucks, initFileUpload, configureAsset } = require('./addons');
@@ -19,6 +20,15 @@ initNunjucks(app);
 initFileUpload(app);
 
 async function startServer() {
+  // connect db
+  await connect(AppConfig.MONGO_URI)
+    .then(() => {
+      console.log('Connected to mongodb');
+    })
+    .catch(error => {
+      console.error('Failed to connect to db: ', error);
+      throw error;
+    });
   // register routes
   // admin
   app.use('/admin', injectAdminData, adminRoutes);
