@@ -1,6 +1,5 @@
 import { createLoadingButton } from '../core/form';
 import { showNotification, NotificationType } from '../core/notification';
-import { ErrorCode, getErrorMessage } from '../core/api';
 import jQuery from 'jquery';
 import 'jquery-validation';
 import { customJqueryValidator } from '../core/custom-jquery-validate';
@@ -74,6 +73,8 @@ function initForm() {
         })
         .done(() => {
           showNotification(NotificationType.Success, 'A user has been created!');
+          validator.reset();
+          form.reset();
         })
         .fail((error) => {
           const responseJson = error.responseJSON || {};
