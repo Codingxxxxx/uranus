@@ -6,6 +6,8 @@ const { UserRepository } = require('../../repos');
 
 router.get('/login', async(req, res, next) => {
   try {
+    // if already login, then redirect back to dashboard
+    if (req.session.userData) return res.redirect('/admin');
     res.render('admin/pages/auth/login.html');
   } catch (error) {
     next(error);
@@ -68,6 +70,17 @@ router.post('/login', async(req, res, next) => {
       data: {
         redirectUrl: '/admin'
       }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/logout', async(req, res, next) => {
+  try {
+    req.session.destroy((err) => {
+      if (err) console.error(err);
+      res.redirect('/admin/login');
     });
   } catch (error) {
     next(error);
