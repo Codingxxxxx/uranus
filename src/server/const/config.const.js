@@ -3,7 +3,8 @@ const {
   NODE_ENV,
   PORT,
   HOST,
-  MONGO_URI
+  MONGO_URI,
+  SESSION_SECRET
 } = process.env;
 
 const AppConfig = {
@@ -11,7 +12,8 @@ const AppConfig = {
   NODE_ENV,
   PORT,
   HOST,
-  MONGO_URI
+  MONGO_URI,
+  SESSION_SECRET
 };
 
 module.exports = {

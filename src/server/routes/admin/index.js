@@ -3,5 +3,6 @@
  */
 module.exports = [
   require('./home/home.route'),
-  require('./user.route')
+  require('./user.route'),
+  require('./auth.route')
 ];

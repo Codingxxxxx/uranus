@@ -10,7 +10,7 @@ const PUBLIC_DIR = path.join(__dirname, '../../../public');
  */
 function configureAsset(app) {
   app.use(
-    '/assets',
+    '/',
     express.static(
       PUBLIC_DIR,
       {

@@ -24,7 +24,7 @@ async function generateRandomSalt() {
  * @typedef {string[]} Tokens
  * @property {string} 0 - The first string is password
  * @property {string} 1 - The second string is salt
- * @returns {Tokens}
+ * @returns {Promise<Tokens>}
  */
 async function hashPassword(plainText, salt) {
   salt = Buffer.from(salt || await generateRandomSalt(), 'base64');

@@ -4,7 +4,13 @@ const app = express();
 const { connect } = require('mongoose');
 
 const { AppConfig } = require('./const');
-const { initVite, initNunjucks, initFileUpload, configureAsset } = require('./addons');
+const {
+  initVite,
+  initNunjucks,
+  initFileUpload,
+  configureAsset,
+  configureSession
+} = require('./addons');
 const adminRoutes = require('./routes/admin');
 // const frontRoutes = require('./routes/front');
 const { injectAdminData } = require('./middleware');
@@ -14,6 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // configure serve asset
 configureAsset(app);
+
+// configure session
+configureSession(app);
 
 // setup template engine
 initNunjucks(app);

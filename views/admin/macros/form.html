@@ -67,3 +67,20 @@
     {{ FormSelect({ id: props.id, options: props.options, name: props.name }) }}
   {% endcall %}
 {% endmacro %}
+
+{% macro Form(props) %}
+  <div class="form-wrapper {{ props.formSize or 'size-sm' }}">
+    <div class="form-title">
+      <span>{{ props.formTitle }}</span>
+      <span class="sub-title">{{ props.formDescription }}</span>
+    </div>
+    <form id="{{ props.formId }}" class="form-main" novalidate>
+      {{ caller() }}
+    </form>
+    </div>
+  </div>
+{% endmacro %}
+
+{% block body %}
+  {% include 'admin/partials/toast.html' %}
+{% endblock %}

@@ -1,11 +1,15 @@
 const ErrorCode = {
   ValidationFailed: 'ValidationFailed',
-  ErrorUserNameTaken: 'ErrorUserNameTaken'
+  ErrorUserNameTaken: 'ErrorUserNameTaken',
+  ErrorInvalidUsernamePassword: 'ErrorInvalidUsernamePassword',
+  ErrorUserBanned: 'ErrorUserBanned'
 };
 
 const ApiResponseMessage = {
   ValidationFailed: 'You didn\'t provide enough fields for this process',
-  ErrorUserNameTaken: 'This username is already exists'
+  ErrorUserNameTaken: 'This username is already exists',
+  ErrorInvalidUsernamePassword: 'Invalid username or password',
+  ErrorUserBanned: 'Your user has been banned from the system. You can contact admin to unban your account'
 };
 
 /**
@@ -19,6 +23,5 @@ function getResponseMessage(errorCode) {
 
 module.exports = {
   ErrorCode,
-  ApiResponseMessage,
   getResponseMessage
 };

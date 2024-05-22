@@ -1,0 +1,30 @@
+{% extends 'admin/templates/minimal.html' %}
+{% from 'admin/macros/form.html' import CommonInput, ButtonSubmit %}
+
+{% block pageTitle %}
+  Login
+{% endblock %}
+
+{% block script %}
+  <script src="/src/client/admin/script/auth/login.js" type="module"></script>
+{% endblock %}
+
+{% block main %}
+  <div class="d-flex align-items-center justify-content-center w-100" style="background-image: url('/assets/images/login_image.jpg'); background-size: cover;">
+    <div id="loginContainer" class="d-flex flex-nowrap  rounded shadow bg-light overflow-hidden">
+      <form id="formLogin" class="form-wrapper p-5">
+        <div class="text-center">
+          <span class="fs-3 fw-bold">Login</span>
+          <small class="d-block mb-5">Welcome back!</small>
+        </div>
+        {{ CommonInput({ id: 'username', label: 'Username' }) }}
+        {{ CommonInput({ id: 'password', type: 'password', label: 'Password' }) }}
+        {{ ButtonSubmit({ class: 'w-100' }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block body %}
+  {% include 'admin/partials/toast.html' %}
+{% endblock %}
