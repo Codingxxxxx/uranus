@@ -13,7 +13,7 @@ const adminLogger = winston.createLogger({
   transports: [
     new winston.transports.DailyRotateFile({
       level: 'error',
-      filename: 'logs/app-%DATE%.error.log',
+      filename: 'logs/admin/error-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',
@@ -21,7 +21,7 @@ const adminLogger = winston.createLogger({
     }),
     new winston.transports.DailyRotateFile({
       level: 'debug',
-      filename: 'logs/app-%DATE%.log',
+      filename: 'logs/admin/debug-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',
@@ -29,12 +29,6 @@ const adminLogger = winston.createLogger({
     })
   ]
 });
-
-if (process.env.NODE_ENV !== 'production') {
-  adminLogger.add(new winston.transports.Console({
-    format: winston.format.simple()
-  }));
-}
 
 /**
  * format log message
@@ -50,7 +44,7 @@ if (process.env.NODE_ENV !== 'production') {
  * @returns {string}
  */
 function formatLogMessage(request) {
-  let message = `
+  const message = `
     #################################################
     requestId: {requestId}
     URL: {url}
@@ -61,14 +55,13 @@ function formatLogMessage(request) {
     Files: {files}
   `;
 
-  if (request.error) message += '\nError: {error}\n';
   const normalizedMessage = message
     .split('\n')
     .map(str => str.trim())
     .join('\n');
-  console.info(JSON.stringify(request.requestBody || {}, null, 2));
+
   return normalizedMessage
-    .replace('{requestId', request.requestId)
+    .replace('{requestId}', request.requestId)
     .replace('{url}', request.url)
     .replace('{method}', request.method)
     .replace('{requestBody}', JSON.stringify(request.requestBody || {}, null, 2))
@@ -77,7 +70,34 @@ function formatLogMessage(request) {
     .replace('{files}', JSON.stringify(request.files || {}, null, 2));
 }
 
+/**
+ * 
+ * @param {object} options 
+ * @param {string} options.requestId
+ * @param {Error} options.error
+ * @returns {string}
+ */
+function formatErrorMessage(options) {
+  const errMessage = `
+    #################################################
+    requestId: {requestId}
+    name: {name}
+    message: {message}
+    stack: {stack}
+  `;
+
+  return errMessage
+    .split('\n')
+    .map(str => str.trim())
+    .join('\n')
+    .replace('{requestId}', options.requestId)
+    .replace('{name}', options.error.name)
+    .replace('{message}', options.error.message)
+    .replace('{stack}', options.error.stack);
+}
+
 module.exports = {
   adminLogger,
-  formatLogMessage
+  formatLogMessage,
+  formatErrorMessage
 };

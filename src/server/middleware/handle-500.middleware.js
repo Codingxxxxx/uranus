@@ -1,5 +1,5 @@
 const { Logger } = require('../libs');
-const { adminLogger, formatLogMessage } = Logger;
+const { adminLogger, formatLogMessage, formatErrorMessage } = Logger;
 
 /**
  * Handle error 500
@@ -10,9 +10,16 @@ const { adminLogger, formatLogMessage } = Logger;
  */
 module.exports = async function(error, req, res, next) {
   try {
-    console.debug('hi');
-    const isAdminPath = req.url.toLowerCase().startsWith();
+    const isAdminPath = req.url.toLowerCase().startsWith('/admin');
     if (isAdminPath) {
+      adminLogger.error(
+        formatErrorMessage({
+          requestId: req.requestId,
+          error
+        })
+      );
+    } else {
+      /*
       adminLogger.error(
         formatLogMessage({
           requestId: req.requestId,
@@ -25,6 +32,7 @@ module.exports = async function(error, req, res, next) {
           error
         })
       );
+      */
     }
     if (req.xhr) return res.status(500).send();
     res.status(500).render('common/error/500.html');

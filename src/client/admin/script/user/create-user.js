@@ -36,7 +36,6 @@ function initForm() {
           method: 'GET',
           dataFilter: (response) => {
             const res = JSON.parse(response);
-            console.debug(res.data.isUserExists);
             return !res.data.isUserExists;
           }
         }
