@@ -36,6 +36,39 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
+/**
+ * format log message
+ * @param {Object} request
+ * @param {string} request.requestId
+ * @param {string} request.url
+ * @param {string} request.method
+ * @param {object} request.requestBody
+ * @param {object} request.query
+ * @param {object} request.params
+ * @param {object} request.files
+ * @param {string} request.error
+ * @returns {string}
+ */
+function formatLogMessage(request) {
+  let message = `
+    #################################################
+    requestId: ${request.requestId}
+    URL: ${request.url}
+    Method: ${request.method}
+    RequestBody: ${JSON.stringify(request.requestBody || {}, null, 2)}
+    QueryString: ${JSON.stringify(request.query || {}, null, 2)}
+    Params: ${JSON.stringify(request.params || {}, null, 2)}
+    Files: ${JSON.stringify(request.files || {}, null, 2)}
+  `;
+
+  if (request.error) message += `\nError: ${request.error}\n`;
+  return message
+    .split('\n')
+    .map(str => str.trim())
+    .join('\n');
+}
+
 module.exports = {
-  adminLogger
+  adminLogger,
+  formatLogMessage
 };

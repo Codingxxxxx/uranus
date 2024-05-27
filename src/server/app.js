@@ -16,7 +16,8 @@ const adminRoutes = require('./routes/admin');
 const {
   injectAdminData,
   checkAdminAuth,
-  adminLog
+  adminLog,
+  handleError500
 } = require('./middleware');
 
 app.use(express.json());
@@ -45,8 +46,7 @@ async function startServer() {
   // register routes
   // admin
   app.use('/admin', adminLog, checkAdminAuth, injectAdminData, adminRoutes);
-  // front
-  // app.use(frontRoutes);
+  app.use(handleError500);
   if (AppConfig.NODE_ENV === 'development') initVite(app);
   app.listen(AppConfig.PORT, AppConfig.HOST, () => {
     console.info('Server started');
