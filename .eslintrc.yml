@@ -20,3 +20,4 @@ rules:
   eol-last:
     - error
     - never
+  no-trailing-spaces: off

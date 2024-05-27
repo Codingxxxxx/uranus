@@ -52,20 +52,29 @@ if (process.env.NODE_ENV !== 'production') {
 function formatLogMessage(request) {
   let message = `
     #################################################
-    requestId: ${request.requestId}
-    URL: ${request.url}
-    Method: ${request.method}
-    RequestBody: ${JSON.stringify(request.requestBody || {}, null, 2)}
-    QueryString: ${JSON.stringify(request.query || {}, null, 2)}
-    Params: ${JSON.stringify(request.params || {}, null, 2)}
-    Files: ${JSON.stringify(request.files || {}, null, 2)}
+    requestId: {requestId}
+    URL: {url}
+    Method: {method}
+    RequestBody: {requestBody}
+    QueryString: {query}
+    Params: {params}
+    Files: {files}
   `;
 
-  if (request.error) message += `\nError: ${request.error}\n`;
-  return message
+  if (request.error) message += '\nError: {error}\n';
+  const normalizedMessage = message
     .split('\n')
     .map(str => str.trim())
     .join('\n');
+  console.info(JSON.stringify(request.requestBody || {}, null, 2));
+  return normalizedMessage
+    .replace('{requestId', request.requestId)
+    .replace('{url}', request.url)
+    .replace('{method}', request.method)
+    .replace('{requestBody}', JSON.stringify(request.requestBody || {}, null, 2))
+    .replace('{query}', JSON.stringify(request.query || {}, null, 2))
+    .replace('{params}', JSON.stringify(request.params || {}, null, 2))
+    .replace('{files}', JSON.stringify(request.files || {}, null, 2));
 }
 
 module.exports = {

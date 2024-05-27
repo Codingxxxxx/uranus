@@ -32,7 +32,7 @@ const schema = new Schema(
     ...baseModel
   },
   {
-    collection: CollectionName.Color
+    collection: CollectionName.Brand
   }
 );
 

@@ -6,6 +6,7 @@
 @import './form.scss';
 @import './toast.scss';
 @import './login.scss';
+@import './custom-file-input.scss';
 
 :root {
   --sidebar-inactive-color: var(--bs-gray-500);
@@ -23,6 +24,14 @@
   --form-tooltip-font-size: 1.10rem;
   --fs-sm: .875rem;
   --fs-tiny: .775rem;
+}
+
+.fs-sm {
+  font-size: var(--fs-sm);
+}
+
+.fs-tiny {
+  font-size: var(--fs-tiny);
 }
 
 #contentWrapper {

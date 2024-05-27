@@ -7,7 +7,11 @@ const {
   SESSION_SECRET,
   PBKDF2_KEYLEN,
   PBKDF2_ITERATION,
-  PBKDF2_DIGEST
+  PBKDF2_DIGEST,
+  AWS_S3_BUCKET,
+  AWS_S3_ACCESS_KEY,
+  AWS_S3_SECRET,
+  AWS_S3_REGION
 } = process.env;
 
 const AppConfig = {
@@ -20,7 +24,11 @@ const AppConfig = {
   PBKDF2_KEYLEN: Number(PBKDF2_KEYLEN),
   PBKDF2_ITERATION: Number(PBKDF2_ITERATION),
   PBKDF2_DIGEST,
-  isDev: NODE_ENV !== 'production'
+  isDev: NODE_ENV !== 'production',
+  AWS_S3_BUCKET,
+  AWS_S3_ACCESS_KEY,
+  AWS_S3_SECRET,
+  AWS_S3_REGION
 };
 
 module.exports = {

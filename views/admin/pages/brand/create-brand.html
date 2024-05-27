@@ -1,0 +1,25 @@
+{% extends 'admin/templates/default.html' %}
+{% from 'admin/macros/form.html' import CommonInput, CommonSelect, InputGroup, InputGroupText, FormInput, FormGroup, FormLabel, ButtonSubmit, ErrorField, Form, CommonFileInput %}
+
+{% block pageTitle %}
+  Create User
+{% endblock %}
+
+{% block script %}
+  {{ script('/src/client/admin/script/brand/create-brand.js') }}
+{% endblock %}
+
+{% block main %}
+  {% call Form({ formId: 'formCreateBrand', formTitle: 'Create Brand', formDescription: 'Create a brand for the products' }) %}
+    <!-- brand name -->
+    {{ CommonInput({ id: 'brandName', label: 'Brand Name' }) }}
+    <!-- brand image -->
+    {{ CommonFileInput({ id: 'brandImage', label: 'Brand Image', exts: 'JPG, JPEG, PNG', accepts: '', maxSize: '3MB' }) }}
+    <!-- btn sbumit -->
+    {{  ButtonSubmit({ class: 'w-100' }) }}
+  {% endcall %}
+{% endblock %}
+
+{% block body %}
+  {% include 'admin/partials/toast.html' %}
+{% endblock %}

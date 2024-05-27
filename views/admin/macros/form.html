@@ -81,6 +81,26 @@
   </div>
 {% endmacro %}
 
+{% macro FileInput(props) %}
+  <div class="custom-file-input w-100">
+    <label class="custom-file-input-container d-block border-2 border-primary p-4 rounded" for="{{ props.id }}" role="button">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <span class="fs-sm fw-semibold">{{ props.exts }}</span>
+        <span class="fs-sm fw-semibold">No more than {{ props.maxSize }}</span>
+      </div>
+      <div class="file-list"></div>
+    </label>
+    <input id="{{ props.id }}" name="{{ props.id }}" type="file" hidden {{ 'multiple' if props.multiple }}  accept="{{ props.accepts }}" />
+  </div>
+{% endmacro %}
+
+{% macro CommonFileInput(props) %}
+  {% call FormGroup() %}
+    {{ FormLabel({ for: props.id, label: props.label }) }}
+    {{ FileInput({ id: props.id, multiple: props.multiple, accepts: props.accepts, exts: props.exts, maxSize: props.maxSize }) }}
+  {% endcall %}
+{% endmacro %}
+
 {% block body %}
   {% include 'admin/partials/toast.html' %}
 {% endblock %}

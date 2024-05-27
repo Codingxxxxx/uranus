@@ -5,5 +5,6 @@ import { Tooltip } from 'bootstrap';
  * @param {HTMLElement[]} tooltips Tooltip elements
  */
 export function initTooltip(tooltips) {
-  tooltips.forEach(tooltip => new Tooltip(tooltip, { container: 'body' }));
+  return Array.from(tooltips)
+    .map(tooltip => new Tooltip(tooltip, { container: 'body' }));
 }

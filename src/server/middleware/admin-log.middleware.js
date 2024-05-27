@@ -1,6 +1,6 @@
 const { Logger } = require('../libs');
 const { AppConfig } = require('../const');
-const { adminLogger } = Logger;
+const { adminLogger, formatLogMessage } = Logger;
 
 const excludeFields = ['password'];
 
@@ -30,22 +30,16 @@ module.exports = async function(req, res, next) {
       .substring(0, 6);
     req.requestId = requestId;
     // remove sensitive fields from log in prod
-    const requestBody = AppConfig.isDev ? req.body : sanitizeFields(req.body, excludeFields);
-    const message = `
-      #################################################
-      requestId: ${requestId}
-      URL: ${req.originalUrl}
-      Method: ${req.method}
-      RequestBody: ${JSON.stringify(requestBody || {}, null, 2)}
-      QueryString: ${JSON.stringify(req.query || {}, null, 2)}
-      Params: ${JSON.stringify(req.params || {}, null, 2)}
-      Files: ${JSON.stringify(req.files || {}, null, 2)}
-    `;
-    const normalizedMessage = message
-      .split('\n')
-      .map(str => str.trim())
-      .join('\n');
-    adminLogger.debug(normalizedMessage);
+    const requestBody = AppConfig.isDev ? sanitizeFields(req.body, excludeFields) : req.body;
+    const message = formatLogMessage({
+      url: req.url,
+      method: req.method,
+      params: req.params,
+      query: req.query,
+      requestBody,
+      requestId
+    });
+    adminLogger.debug(message);
     next();
   } catch (error) {
     next(error);
