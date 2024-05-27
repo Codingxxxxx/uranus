@@ -15,7 +15,8 @@ const adminRoutes = require('./routes/admin');
 // const frontRoutes = require('./routes/front');
 const {
   injectAdminData,
-  checkAdminAuth
+  checkAdminAuth,
+  adminLog
 } = require('./middleware');
 
 app.use(express.json());
@@ -43,7 +44,7 @@ async function startServer() {
     });
   // register routes
   // admin
-  app.use('/admin', checkAdminAuth, injectAdminData, adminRoutes);
+  app.use('/admin', adminLog, checkAdminAuth, injectAdminData, adminRoutes);
   // front
   // app.use(frontRoutes);
   if (AppConfig.NODE_ENV === 'development') initVite(app);
