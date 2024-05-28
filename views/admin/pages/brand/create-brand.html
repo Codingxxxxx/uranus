@@ -14,7 +14,7 @@
     <!-- brand name -->
     {{ CommonInput({ id: 'brandName', label: 'Brand Name' }) }}
     <!-- brand image -->
-    {{ CommonFileInput({ id: 'brandImage', label: 'Brand Image', exts: 'JPG, JPEG, PNG', accepts: '', maxSize: '3MB' }) }}
+    {{ CommonFileInput({ id: 'brandImage', label: 'Brand Image', exts: 'JPG, JPEG, PNG', accepts: 'image/jpg, image/jpeg, image/png', maxSize: '2MB' }) }}
     <!-- btn sbumit -->
     {{  ButtonSubmit({ class: 'w-100' }) }}
   {% endcall %}

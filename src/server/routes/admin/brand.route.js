@@ -1,10 +1,12 @@
 const router = require('express').Router();
 const { Admin } = require('../../const');
 const { Api } = require('../../const');
-const { Validator, FileHandler, FileUtil, Slug } = require('../../libs/');
+const { Validator, FileHandler, FileUtil, Slug, SessionHandler, Logger } = require('../../libs/');
+const { formatErrorMessage } = require('../../libs/logger.lib');
 const { BrandRepository } = require('../../repos');
 const { SideBarMenu } = Admin;
 const { ErrorCode, getResponseMessage } = Api;
+const { adminLogger } = Logger;
 
 router.get('/brand/add', async(req, res, next) => {
   try {
@@ -41,7 +43,16 @@ router.post('/brand/add', async(req, res, next) => {
       });
     }
 
-    const fileMetaData = await FileUtil.getFileFromTempDir(fileUUID);
+    const fileMetaData = await FileUtil
+      .getFileFromTempDir(fileUUID)
+      .catch(error => {
+        adminLogger.error(
+          formatErrorMessage({
+            requestId: req.requestId,
+            error
+          })
+        );
+      });
 
     if (!fileMetaData) {
       return res.status(400).json({
@@ -49,11 +60,12 @@ router.post('/brand/add', async(req, res, next) => {
         message: getResponseMessage(ErrorCode.ErrorFileNotFound)
       });
     }
-
+    
     // insert to db
     const brand = await BrandRepository.createBrand({
       brandName: brandName.trim(),
       slug: Slug.slugify(brandName.trim()),
+      createdBy: SessionHandler.getUserId(req),
       brandImage: {
         fileUrl: fileMetaData.fileUrl,
         filename: fileMetaData.filename,
@@ -67,14 +79,36 @@ router.post('/brand/add', async(req, res, next) => {
     const { error } = await FileHandler.upload(objectPath, fileMetaData.fileBuffer, fileMetaData.mimetype);
 
     if (error) {
-      // write log
-      throw error;
+      adminLogger.error(
+        formatErrorMessage({
+          error,
+          requestId: req.requestId
+        })
+      );
+      return res.status(400).json({
+        errorCode: ErrorCode.ErrorFileNotFound,
+        message: getResponseMessage(ErrorCode.ErrorFileNotFound)
+      });
     }
 
     // remove file from tmp
     await FileUtil.deleteFileFromTempDir(fileUUID);
 
     res.status(201).json(null);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/brand/check-name', async(req, res, next) => {
+  try {
+    if (!req.query.brandName || !req.query.brandName.trim()) return res.status(200).json({ data: { isExists: false } });
+    const brand = await BrandRepository.getBrandByBrandName(req.query.brandName.trim());
+    res.status(200).json({
+      data: {
+        isExists: Boolean(brand)
+      }
+    });
   } catch (error) {
     next(error);
   }

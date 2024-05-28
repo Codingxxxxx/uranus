@@ -13,6 +13,14 @@ function initForm() {
     rules: {
       brandName: {
         required: true,
+        remote: {
+          url: '/admin/brand/check-name',
+          method: 'GET',
+          dataFilter: (res) => {
+            res = JSON.parse(res);
+            return !res.data.isExists;
+          }
+        },
         normalizer: (val) => val.trim()
       },
       brandImage: {
@@ -22,9 +30,12 @@ function initForm() {
       }
     },
     messages: {
+      brandName: {
+        remote: 'This brand name is already taken, please try another.'
+      },
       brandImage: {
         fileMaxSize: 'File size must not more than 2mb.',
-        fileExt: 'File type not supported, accept only PNG, JPG, JPEG'
+        fileExt: 'File type not supported, accept only PNG, JPG, JPEG.'
       }
     },
     submitHandler: (form) => {

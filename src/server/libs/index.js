@@ -4,5 +4,6 @@ module.exports = {
   Auth: require('./auth.lib').Auth,
   Logger: require('./logger.lib'),
   FileUtil: require('./file.lib'),
-  FileHandler: require('./s3.lib')
+  FileHandler: require('./s3.lib'),
+  SessionHandler: require('./session.lib').SessionHandler
 };

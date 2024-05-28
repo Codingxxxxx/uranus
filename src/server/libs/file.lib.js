@@ -22,9 +22,7 @@ const fileTempDirPath = path.join(__dirname, '../../../', File.fileTempDirName);
 async function getFileFromTempDir(filename) {
   const fullPath = path.join(fileTempDirPath, filename);
   const extension = path.parse(fullPath).ext;
-  const fileBuffer = await fs.readFile(fullPath).catch(err => {
-    console.info(err);
-  });
+  const fileBuffer = await fs.readFile(fullPath);
 
   // file not found
   if (!fileBuffer) return null;

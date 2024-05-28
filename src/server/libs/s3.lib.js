@@ -15,7 +15,7 @@ const s3Client = new S3Client({
  * @param {Buffer} file 
  * @param {string | null} mimetype 
  * @typedef {Object} Output
- * @property {string} error,
+ * @property {Error} error,
  * @property {Object} outputMetadata
  * @returns {Promise<Output>}
  */

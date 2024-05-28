@@ -5,12 +5,13 @@ const { BrandModel } = require('../models');
  * @param {Object} brand 
  * @param {string} brand.brandName
  * @param {string} brand.slug
+ * @param {string} brand.createdBy
  * @param {Object} brand.brandImage
  * @param {string} brand.brandImage.fileUrl
  * @param {string} brand.brandImage.filename
  * @param {number} brand.brandImage.size
  * @param {string} brand.brandImage.mimetype
- * @returns 
+ * @returns {Promise<object>}
  */
 function createBrand(brand) {
   return BrandModel.create({
@@ -21,7 +22,8 @@ function createBrand(brand) {
       filename: brand.brandImage.filename,
       size: brand.brandImage.size,
       mimetype: brand.brandImage.mimetype
-    }
+    },
+    createdBy: brand.createdBy
   });
 }
 
@@ -32,7 +34,7 @@ function createBrand(brand) {
  */
 function getBrandByBrandName(brandName) {
   return BrandModel
-    .findOne({ brandName: new RegExp(`^${brandName}$`) })
+    .findOne({ brandName: new RegExp(`^${brandName}$`, 'i') })
     .lean();
 }
 
