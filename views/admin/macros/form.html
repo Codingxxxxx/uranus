@@ -94,6 +94,24 @@
   </div>
 {% endmacro %}
 
+{% macro Breadcrum(links) %}
+  <div class="align-self-start mb-3">
+    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+      <ol class="breadcrumb">
+        {% for link in links %}
+        <li class="breadcrumb-item fs-sm fw-semibold {{ 'active' if link.active }}" {{ 'aria-current="page"' | safe if link.active }}>
+          {% if link.active%}
+            <span class="fw-bold">{{ link.label }}</span>
+          {% else %}
+            <a class="text-secondary text-decoration-none" href="{{ link.link }}">{{ link.label }}</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+{% endmacro %}
+
 {% macro CommonFileInput(props) %}
   {% call FormGroup() %}
     {{ FormLabel({ for: props.id, label: props.label }) }}
