@@ -1,0 +1,30 @@
+{% extends 'admin/templates/default.html' %}
+{% from 'admin/macros/datatable.html' import DataTable %}
+
+{% block pageTitle %}
+  User List
+{% endblock %}
+
+{% block script %}  
+  {{ script('/src/client/admin/script/user/list.js') }}
+{% endblock %}
+
+{% block main %}
+  {{ DataTable({
+      id: 'tableUser',
+      tableTitle: 'Users',
+      columns: [
+        'Username',
+        'Role',
+        'Full Name',
+        'Created At',
+        'Status',
+        'Last Login'
+      ],
+      tableTop: {
+        enable: true,
+        addLink: '/admin/user/add'
+      }    
+    }) 
+  }}
+{% endblock %}

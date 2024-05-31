@@ -65,6 +65,9 @@ const schema = new Schema(
   }
 );
 
+schema.plugin(require('mongoose-paginate-v2'));
+schema.plugin(require('mongoose-aggregate-paginate-v2'));
+
 const UserModel = model(CollectionName.User, schema);
 
 module.exports = { UserModel };

@@ -79,4 +79,39 @@ router.get('/user/check-username', async(req, res, next) => {
   }
 });
 
+router.get('/users', async(req, res, next) => {
+  try {
+    res.render('admin/pages/user/list.html', {
+      $page: {
+        sidebar: {
+          active: SideBarMenu.USER
+        }
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/user/list', async(req, res, next) => {
+  try {
+    const { limit, offset, draw } = req.paginationParams;
+    const { totalPages, totalDocs, docs } = await UserRepository.getPagination(limit, offset);
+    res.status(200).json({
+      data: {
+        pagination: {
+          draw,
+          limit,
+          offset,
+          pages: totalPages,
+          docLength: totalDocs
+        },
+        list: docs
+      } 
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

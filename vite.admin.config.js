@@ -8,6 +8,7 @@ const adminScripts = [
   'core/main.js',
   'core/page-loading.js',
   'user/create-user.js',
+  'user/list.js',
   'auth/login.js',
   'brand/create-brand.js',
   'brand/list.js'

@@ -1,3 +1,4 @@
+const { populate } = require('dotenv');
 const { UserModel } = require('../models');
 
 /**
@@ -38,9 +39,25 @@ function createUser(user) {
     );
 }
 
+/**
+ * Get user pagination
+ * @param {number} limit 
+ * @param {number} offset 
+ * @returns {Promise<object>}
+ */
+function getPagination(limit, offset) {
+  return UserModel.paginate({}, {
+    limit,
+    offset,
+    populate: 'role createdBy',
+    lean: true
+  });
+}
+
 const UserRepository = {
+  createUser,
   getUserByUsername,
-  createUser
+  getPagination
 };
 
 module.exports = {

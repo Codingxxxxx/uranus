@@ -1,3 +1,4 @@
+const { AppConfig } = require('../const');
 const { Logger } = require('../libs');
 const { adminLogger, formatLogMessage, formatErrorMessage } = Logger;
 
@@ -10,6 +11,7 @@ const { adminLogger, formatLogMessage, formatErrorMessage } = Logger;
  */
 module.exports = async function(error, req, res, next) {
   try {
+    if (AppConfig.isDev) throw error;
     const isAdminPath = req.url.toLowerCase().startsWith('/admin');
     if (isAdminPath) {
       adminLogger.error(

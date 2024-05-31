@@ -1,5 +1,5 @@
 import { jQuery } from '../../../shared/libs/jquery';
-
+import { getDefaultContent } from '../core/constant';
 
 export function customDataTable(dataTable) {
   Object.assign(dataTable.defaults, {
@@ -32,7 +32,13 @@ export function customDataTable(dataTable) {
       // remove pagination if three is only one page
       if (pageLength <= 1) paginationWrapper.remove();
       paginationEl.addClass('pagination-sm me-2');
-    }
+    },
+    columnDefs: [
+      {
+        targets: '_all',
+        defaultContent: getDefaultContent()
+      }
+    ]
   });
   
   return dataTable;
