@@ -36,6 +36,9 @@ const schema = new Schema(
   }
 );
 
+schema.plugin(require('mongoose-paginate-v2'));
+schema.plugin(require('mongoose-aggregate-paginate-v2'));
+
 const BrandModel = model(CollectionName.Brand, schema);
 
 module.exports = { BrandModel };

@@ -9,7 +9,8 @@ const adminScripts = [
   'core/page-loading.js',
   'user/create-user.js',
   'auth/login.js',
-  'brand/create-brand.js'
+  'brand/create-brand.js',
+  'brand/list.js'
 ];
 
 export default defineConfig({

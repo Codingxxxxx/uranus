@@ -18,7 +18,10 @@ const baseModel = {
     type: SchemaTypes.ObjectId,
     ref: CollectionName.User
   },
-  lastUpdateBy: {
+  lastUpdatedAt: {
+    type: Date
+  },
+  lastUpdatedBy: {
     type: SchemaTypes.ObjectId,
     ref: CollectionName.User
   }

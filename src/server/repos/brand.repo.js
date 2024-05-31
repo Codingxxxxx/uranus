@@ -38,9 +38,30 @@ function getBrandByBrandName(brandName) {
     .lean();
 }
 
+/**
+ * 
+ * @param {object} search 
+ * @param {number} limit 
+ * @param {number} offset 
+ * @returns {Promise<object>}
+ */
+function getPagination(search, limit, offset) {
+  return BrandModel
+    .paginate(
+      {}, 
+      { 
+        limit,
+        offset, 
+        lean: true,
+        populate: 'createdBy'
+      }
+    );
+}
+
 const BrandRepository = {
   createBrand,
-  getBrandByBrandName
+  getBrandByBrandName,
+  getPagination
 };
 
 module.exports = {

@@ -100,6 +100,41 @@ router.post('/brand/add', async(req, res, next) => {
   }
 });
 
+router.get('/brands', async(req, res, next) => {
+  try {
+    res.render('admin/pages/brand/list.html', {
+      $page: {
+        sidebar: {
+          active: SideBarMenu.BRAND
+        }
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/brand/list', async(req, res, next) => {
+  try {
+    const { limit, offset, draw } = req.paginationParams;
+    const { docs, totalPages, totalDocs } = await BrandRepository.getPagination({}, limit, offset);
+    res.status(200).json({
+      data: {
+        pagination: {
+          draw,
+          limit,
+          offset,
+          pages: totalPages,
+          docLength: totalDocs
+        },
+        list: docs
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/brand/check-name', async(req, res, next) => {
   try {
     if (!req.query.brandName || !req.query.brandName.trim()) return res.status(200).json({ data: { isExists: false } });
@@ -108,7 +143,7 @@ router.get('/brand/check-name', async(req, res, next) => {
       data: {
         isExists: Boolean(brand)
       }
-    });
+    }); 
   } catch (error) {
     next(error);
   }

@@ -11,7 +11,8 @@ const {
   AWS_S3_BUCKET,
   AWS_S3_ACCESS_KEY,
   AWS_S3_SECRET,
-  AWS_S3_REGION
+  AWS_S3_REGION,
+  AWS_S3_DOMAIN
 } = process.env;
 
 const AppConfig = {
@@ -28,7 +29,8 @@ const AppConfig = {
   AWS_S3_BUCKET,
   AWS_S3_ACCESS_KEY,
   AWS_S3_SECRET,
-  AWS_S3_REGION
+  AWS_S3_REGION,
+  AWS_S3_DOMAIN
 };
 
 module.exports = {
