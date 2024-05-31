@@ -1,0 +1,24 @@
+{% macro DataTable(columns, tableTitle, tableTop) %}
+  <div class="w-100 p-4 shadow-sm rounded border bg-white">
+    {% if tableTop.enable %}
+      <div class="table-top d-flex justify-content-between align-items-center">
+        <span class="table-title fw-bold fs-5">{{ tableTitle }}</span>
+        <a class="btn btn-primary" role="button" href="{{ tableTop.addLink }}">
+          <span class="d-inline-block iconify me-1" data-icon="simple-line-icons:plus"></span>
+          Add
+        </a>
+      </div>
+    {% endif %}
+    <div class="table-responsive">
+      <table id="tableBrand" class="custom-table table align-middle table-sm  w-100 mb-4 mt-3">
+        <thead class="fs-sm table-light">
+          <tr>
+            {% for col in columns %}
+              <th scope="col">{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+{% endmacro %}
