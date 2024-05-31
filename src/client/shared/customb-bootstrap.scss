@@ -3,8 +3,10 @@
 $focus-ring-width: .15rem;
 $btn-font-weight: 600;
 $border-radius: .50rem;
-$input-btn-padding-y: .435rem;
-$input-btn-font-size: .9rem;
+$input-btn-padding-y: .475rem;
+$input-btn-padding-x: 1rem;
+$input-btn-padding-y-sm: .375rem;
+$input-btn-padding-x-sm: .75rem;
 
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
