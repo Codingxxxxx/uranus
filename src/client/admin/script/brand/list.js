@@ -4,7 +4,7 @@ import { createColumnImage } from '../core/custom-datatable';
 import { getBrandImageObjectPath } from '../core/cdn';
 import { formaTableDate } from '../core/date-utils';
 
-const tableId = '#tableBrand';
+const tableId = '#brandTable';
 
 function initDataTable() {
   jQuery(tableId).DataTable({

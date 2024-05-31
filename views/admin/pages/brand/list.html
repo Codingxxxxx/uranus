@@ -10,8 +10,9 @@
 {% endblock %}
 
 {% block main %}
-  {{ DataTable(
-      [
+  {{ DataTable({
+    id: 'brandTable',
+    columns: [
         'Brand Name',
         'Brand Image',
         'Created By',
@@ -19,12 +20,12 @@
         'Last Update',
         'Last Update By'
       ],
-      'Brands',
-      {
+    tableTitle: 'Brands',
+    tableTop:  {
         enable: true,
         addLink: '/admin/brand/add'
       }
-    )
+    })
   }}
 {% endblock %}
 
