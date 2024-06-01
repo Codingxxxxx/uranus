@@ -1,8 +1,8 @@
 require('dotenv').config();
 const { AppConfig } = require('./../const');
 const mongoose = require('mongoose');
-const { RoleRepository } = require('../repos');
-const { Slug } = require('../libs');
+const { RoleRepository, UserRepository } = require('../repos');
+const { Slug, Auth } = require('../libs');
 
 const roles = [
   {
@@ -15,11 +15,19 @@ const roles = [
 
 mongoose
   .connect(AppConfig.MONGO_URI)
-  .then(() => {
-    return RoleRepository
-      .createRoles(
-        roles.map(role => ({ roleName: role.roleName, slug: Slug.slugify(role.roleName) }))
-      );
+  .then(async () => {
+    const insertedRoles = await RoleRepository.createRoles(
+      roles.map(role => ({ roleName: role.roleName, slug: Slug.slugify(role.roleName) }))
+    );
+    const [pass, salt] = await Auth.hashPassword('admin');
+    await UserRepository.createUser({
+      firstname: 'Admin',
+      lastname: 'Admin',
+      role: insertedRoles.find(r => r.roleName === 'Admin')._id,
+      username: 'admin',
+      password: pass,
+      salt
+    });
   })
   .then(() => {
     console.log('Seeding completed');

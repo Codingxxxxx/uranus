@@ -23,6 +23,8 @@ function getUserByUsername(username) {
  * @param {string} user.username
  * @param {string} user.role
  * @param {string} user.password
+ * @param {string} user.salt
+ * @param {string} user.createdBy
  * @returns {Promise<Object>}
  */
 function createUser(user) {
@@ -34,7 +36,8 @@ function createUser(user) {
         username: user.username.trim(),
         role: user.role,
         password: user.password,
-        salt: user.salt
+        salt: user.salt,
+        createdBy: user.createdBy
       }
     );
 }
