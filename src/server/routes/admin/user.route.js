@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { SideBarMenu } = require('../../const').Admin;
 const { ErrorCode, getResponseMessage } = require('../../const').Api;
 const { RoleRepository, UserRepository } = require('../../repos');
-const { Validator, Auth } = require('../../libs');
+const { Validator, Auth, SessionHandler } = require('../../libs');
 
 router.get('/user/add', async(req, res, next) => {
   try {
@@ -58,7 +58,8 @@ router.post('/user/add', async(req, res, next) => {
         username,
         role,
         password: derivedPass,
-        salt
+        salt,
+        createdBy: SessionHandler.getUserId(req)
       }
     );
 
