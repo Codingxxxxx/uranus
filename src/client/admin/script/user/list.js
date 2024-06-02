@@ -2,7 +2,7 @@ import { jQuery } from '../../../shared/libs/jquery';
 import { getDefaultContent } from '../core/constant';
 import { createColumnImage } from '../core/custom-datatable';
 import { getBrandImageObjectPath } from '../core/cdn';
-import { formaTableDate } from '../core/date-utils';
+import { formatTableDate } from '../core/date-utils';
 
 const tableId = '#tableUser';
 
@@ -31,7 +31,7 @@ function initDataTable() {
         data: 'createdAt',
         render: (data) => {
           if (!data) return;
-          return formaTableDate(data);
+          return formatTableDate(data);
         }
       },
       {
@@ -47,7 +47,7 @@ function initDataTable() {
         data: 'lastLogin',
         render: (data) => {
           if (!data) return;
-          return formaTableDate(data);
+          return formatTableDate(data);
         }
       }
     ]
