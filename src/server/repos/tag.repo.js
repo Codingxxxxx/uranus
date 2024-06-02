@@ -21,9 +21,25 @@ function getTagByName(tagName) {
   return TagModel.findOne({ tagName: new RegExp(`^${tagName}$`, 'i') }).lean();
 }
 
+/**
+ * Get tag pagination
+ * @param {number} limit 
+ * @param {number} offset 
+ * @returns {Promise<Object>}
+ */
+function getPagination(limit, offset) {
+  return TagModel.paginate({}, {
+    limit,
+    offset,
+    lean: true,
+    populate: 'createdBy'
+  });
+}
+
 const TagRepository = {
   create,
-  getTagByName
+  getTagByName,
+  getPagination
 };
 
 module.exports = {

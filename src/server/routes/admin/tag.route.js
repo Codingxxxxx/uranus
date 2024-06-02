@@ -67,4 +67,39 @@ router.get('/tag/check-name', async(req, res, next) => {
   }
 });
 
+router.get('/tags', async(req, res, next) => {
+  try {
+    res.render('admin/pages/tag/list.html', {
+      $page: {
+        sidebar: {
+          active: SideBarMenu.TAG
+        }
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/tag/list', async(req, res, next) => {
+  try {
+    const { limit, offset, draw } = req.paginationParams;
+    const { totalPages, totalDocs, docs } = await TagRepository.getPagination(limit, offset);
+    res.status(200).json({
+      data: {
+        pagination: {
+          limit,
+          offset,
+          draw,
+          page: totalPages,
+          docLength: totalDocs
+        },
+        list: docs
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

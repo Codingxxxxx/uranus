@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
 
-export function formaTableDate(isoDateString) {
+export function formatTableDate(isoDateString) {
   return format(isoDateString, 'mm/dd/yyyy hh:mm a');
 }
