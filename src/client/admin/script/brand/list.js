@@ -20,7 +20,7 @@ function initDataTable() {
         data: 'brandImage',
         render: (data, type, row) => {
           if (!data) return;
-          const src = getBrandImageObjectPath(row._id, data.fileUrl);
+          const src = getBrandImageObjectPath(data.fileUrl);
           return createColumnImage(src);
         }
       },

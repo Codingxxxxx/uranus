@@ -67,7 +67,7 @@ function mbToByte(mb) {
 }
 
 const AllObjectPath = {
-  BrandImage: 'brands/{id}/{fileUrl}'
+  BrandImage: 'brands/{fileUrl}'
 };
 
 /**

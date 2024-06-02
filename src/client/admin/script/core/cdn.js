@@ -1,7 +1,7 @@
 import { ClientConfig } from './client-config';
 
 const AllObjectPath = {
-  BrandImage: 'brands/{id}/{fileUrl}'
+  BrandImage: 'brands/{fileUrl}'
 };
 
 /**
@@ -10,9 +10,8 @@ const AllObjectPath = {
  * @param {string} fileUrl 
  * @returns {string}
  */
-export function getBrandImageObjectPath(id, fileUrl) {
+export function getBrandImageObjectPath(fileUrl) {
   const objectUrl = AllObjectPath.BrandImage
-    .replace('{id}', id)
     .replace('{fileUrl}', fileUrl);
 
   return ClientConfig.VITE_S3_DOMAIN + '/' + objectUrl;
