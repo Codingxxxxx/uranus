@@ -6,7 +6,7 @@ module.exports = {
   TransactionModel: require('./transaction.model').TransactionModel,
   OrderModel: require('./order.model').OrderModel,
   ProductModel: require('./product.model').ProductModel,
-  PCTagModel: require('./pc-tage.model').PCTagModel,
+  TagModel: require('./pc-tage.model').TagModel,
   Promotion: require('./promotion.model').PromotionModel,
   BrandModel: require('./brand.model').BrandModel
 };

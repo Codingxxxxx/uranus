@@ -1,4 +1,13 @@
+/**
+ * 
+ * @param {import('jquery')} jQuery 
+ * @returns 
+ */
 export function customJqueryValidator(jQuery) {
+  jQuery.ajaxSetup({
+    contentType: 'application/json',
+    accepts: 'application/json'
+  });
   jQuery.validator.setDefaults({
     ignore: '.ignore-field',
     errorClass: 'invalid-field',

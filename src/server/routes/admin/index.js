@@ -6,5 +6,6 @@ module.exports = [
   require('./user.route'),
   require('./auth.route'),
   require('./brand.route'),
+  require('./tag.route'),
   require('./file-upload.route')
 ];

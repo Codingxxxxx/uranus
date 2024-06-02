@@ -1,0 +1,21 @@
+{% extends 'admin/templates/default.html' %}
+{% from 'admin/macros/form.html' import Form, CommonInput, Breadcrum, ButtonSubmit %}
+
+{% block pageTitle %}
+  Create Tags
+{% endblock %}
+
+{% block script %}
+  {{ script('/src/client/admin/script/tag/create.js') }}
+{% endblock %}
+
+{% block main %}
+  {% call Form({ formId: 'formCreateTag', formTitle: 'Create Tag', formDescription: 'Create your favorite tags for prodoucts' }) %}
+    {{ CommonInput({ id: 'tagName', label: 'Tag' }) }}
+    {{ ButtonSubmit({ class: 'w-100' }) }}
+  {% endcall %}
+{% endblock %}
+
+{% block body %}
+  {% include 'admin/partials/toast.html' %}
+{% endblock %}

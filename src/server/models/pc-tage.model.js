@@ -22,6 +22,6 @@ const schema = new Schema(
   }
 );
 
-const PCTagModel = model(CollectionName.PCTag, schema);
+const TagModel = model(CollectionName.PCTag, schema);
 
-module.exports = { PCTagModel };
+module.exports = { TagModel };

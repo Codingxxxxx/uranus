@@ -4,7 +4,8 @@ const SideBarMenu = {
   CATEGORY: 'CATEGORY',
   BRAND: 'BRAND',
   PROMOTION: 'PROMOTION',
-  USER: 'USER'
+  USER: 'USER',
+  TAG: 'TAG'
 };
 
 module.exports = {

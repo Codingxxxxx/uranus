@@ -57,7 +57,7 @@
 {% macro CommonInput(props) %}
   {% call FormGroup() %}
     {{ FormLabel({ for: props.id, label: props.label, enableTooltip: props.enableTooltip, tooltipTitle: props.tooltipTitle }) }}
-    {{ FormInput({ id: props.id, name: props.name, type: props.type, placeholder: props.placeholder }) }}
+    {{ FormInput({ id: props.id, name: props.name or props.id, type: props.type, placeholder: props.placeholder }) }}
   {% endcall %}
 {% endmacro %}
 
@@ -118,7 +118,3 @@
     {{ FileInput({ id: props.id, multiple: props.multiple, accepts: props.accepts, exts: props.exts, maxSize: props.maxSize }) }}
   {% endcall %}
 {% endmacro %}
-
-{% block body %}
-  {% include 'admin/partials/toast.html' %}
-{% endblock %}

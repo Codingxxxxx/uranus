@@ -11,7 +11,8 @@ const adminScripts = [
   'user/list.js',
   'auth/login.js',
   'brand/create-brand.js',
-  'brand/list.js'
+  'brand/list.js',
+  'tag/create.js'
 ];
 
 export default defineConfig({

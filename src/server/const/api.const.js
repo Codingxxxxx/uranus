@@ -5,7 +5,8 @@ const ErrorCode = {
   ErrorUserBanned: 'ErrorUserBanned',
   ErrorFileTooBig: 'ErrorFileTooBig',
   ErrorFileNotFound: 'ErrorFileNotFound',
-  ErrorBrandNameTaken: 'ErrorBrandNameTaken'
+  ErrorBrandNameTaken: 'ErrorBrandNameTaken',
+  ErrorTagNameTaken: 'ErrorTagNameTaken'
 };
 
 const ApiResponseMessage = {
@@ -15,7 +16,8 @@ const ApiResponseMessage = {
   ErrorUserBanned: 'Your user has been banned from the system. You can contact admin to unban your account',
   ErrorFileTooBig: 'Uploaded file exceeded the limit',
   ErrorFileNotFound: 'File not found',
-  ErrorBrandNameTaken: 'This brand name is already taken.'
+  ErrorBrandNameTaken: 'This brand name is already taken.',
+  ErrorTagNameTaken: 'This brand name is already taken.'
 };
 
 /**
