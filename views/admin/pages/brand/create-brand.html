@@ -23,19 +23,6 @@
 {% endblock %}
 
 {% block main %}
-  {{ Breadcrum(
-      [
-        {
-          label: 'Brand List',
-          link: '/admin/brands'
-        },
-        {
-          label: 'Add Brand',
-          active: true
-        }
-      ]
-    ) 
-  }}
   {% call Form({ formId: 'formCreateBrand', formTitle: 'Create Brand', formDescription: 'Create a brand for the products' }) %}
     <!-- brand name -->
     {{ CommonInput({ id: 'brandName', label: 'Brand Name' }) }}
