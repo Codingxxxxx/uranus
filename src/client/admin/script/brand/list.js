@@ -19,7 +19,7 @@ function initDataTable() {
         width: '200px',
         data: 'brandImage',
         render: (data, type, row) => {
-          if (!data) return getDefaultContent();
+          if (!data) return;
           const src = getBrandImageObjectPath(row._id, data.fileUrl);
           return createColumnImage(src);
         }
@@ -27,24 +27,28 @@ function initDataTable() {
       {
         data: 'createdBy',
         render: (data) => {
-          return `<a class="" role="button">${data.username}</a>` || getDefaultContent();
+          if (!data) return;
+          return `<a class="" role="button">${data.username}</a>`;
         }
       },
       {
         data: 'createdAt',
         render: (data) => {
+          if (!data) return;
           return formaTableDate(data) || getDefaultContent();
         }
       },
       {
         data: 'lastUpdatedAt',
         render: (data) => {
+          if (!data) return;
           return data || getDefaultContent();
         }
       },
       {
         data: 'lastUpdatedBy',
         render: (data) => {
+          if (!data) return;
           return data || getDefaultContent();
         }
       }
