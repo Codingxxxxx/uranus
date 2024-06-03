@@ -8,5 +8,6 @@ module.exports = {
   ProductModel: require('./product.model').ProductModel,
   TagModel: require('./pc-tage.model').TagModel,
   Promotion: require('./promotion.model').PromotionModel,
-  BrandModel: require('./brand.model').BrandModel
+  BrandModel: require('./brand.model').BrandModel,
+  CategoryModel: require('./category.model').CategoryModel
 };

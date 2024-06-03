@@ -9,7 +9,8 @@ const CollectionName = {
   Customer: 'customers',
   Promotion: 'promotions',
   Transaction: 'transactions',
-  Brand: 'brands'
+  Brand: 'brands',
+  Category: 'categories'
 };
 
 const UserStatus = {

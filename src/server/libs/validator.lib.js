@@ -5,14 +5,16 @@ const {
   UserCreationSchema,
   UserLoginSchema,
   BrandCreationSchema,
-  TagCreationSchema
+  TagCreationSchema,
+  CategoryCreationSchema
 } = require('../schemas');
 
 const Validator = {
   validateUserCreation: ajv.compile(UserCreationSchema),
   validateUserLogin: ajv.compile(UserLoginSchema),
   validateBrandCreation: ajv.compile(BrandCreationSchema),
-  validateTagCreation: ajv.compile(TagCreationSchema)
+  validateTagCreation: ajv.compile(TagCreationSchema),
+  validateCategoryCreation: ajv.compile(CategoryCreationSchema)
 };
 
 module.exports = {

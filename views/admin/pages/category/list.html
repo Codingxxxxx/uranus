@@ -1,0 +1,28 @@
+{% extends 'admin/templates/default.html' %}
+{% from 'admin/macros/datatable.html' import DataTable %}
+
+{% block pageTitle %}
+  Tag List
+{% endblock %}
+
+{% block script %}  
+  {{ script('/src/client/admin/script/tag/list.js') }}
+{% endblock %}
+
+{% block main %}
+  {{ DataTable({
+      id: 'tableTag',
+      tableTitle: 'Tags',
+      columns: [
+        'Tag Name',
+        'Created By',
+        'Created At',
+        'Actions'
+      ],
+      tableTop: {
+        enable: true,
+        addLink: '/admin/tag/add'
+      }    
+    }) 
+  }}
+{% endblock %}

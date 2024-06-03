@@ -6,7 +6,8 @@ const ErrorCode = {
   ErrorFileTooBig: 'ErrorFileTooBig',
   ErrorFileNotFound: 'ErrorFileNotFound',
   ErrorBrandNameTaken: 'ErrorBrandNameTaken',
-  ErrorTagNameTaken: 'ErrorTagNameTaken'
+  ErrorTagNameTaken: 'ErrorTagNameTaken',
+  ErrorCategoryNameTaken: 'ErrorCategoryNameTaken'
 };
 
 const ApiResponseMessage = {
@@ -17,7 +18,8 @@ const ApiResponseMessage = {
   ErrorFileTooBig: 'Uploaded file exceeded the limit',
   ErrorFileNotFound: 'File not found',
   ErrorBrandNameTaken: 'This brand name is already taken.',
-  ErrorTagNameTaken: 'This brand name is already taken.'
+  ErrorTagNameTaken: 'This brand name is already taken.',
+  ErrorCategoryNameTaken: 'This category name is already taken'
 };
 
 /**
