@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Admin, Api } = require('../../const');
 const { Validator, SessionHandler, Slug } = require('../../libs');
-const { TagRepository, CategoryRepository } = require('../../repos');
+const { CategoryRepository } = require('../../repos');
 const { SideBarMenu } = Admin;
 const { ErrorCode, getResponseMessage } = Api;
 
@@ -10,7 +10,7 @@ router.get('/category/add', async(req, res, next) => {
     res.render('admin/pages/category/create.html', {
       $page: {
         sidebar: {
-          active: SideBarMenu.TAG
+          active: SideBarMenu.CATEGORY
         }
       }
     });
@@ -72,7 +72,7 @@ router.get('/categories', async(req, res, next) => {
     res.render('admin/pages/category/list.html', {
       $page: {
         sidebar: {
-          active: SideBarMenu.TAG
+          active: SideBarMenu.CATEGORY
         }
       }
     });
