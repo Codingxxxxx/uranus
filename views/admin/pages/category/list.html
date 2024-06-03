@@ -2,26 +2,26 @@
 {% from 'admin/macros/datatable.html' import DataTable %}
 
 {% block pageTitle %}
-  Tag List
+  Category List
 {% endblock %}
 
 {% block script %}  
-  {{ script('/src/client/admin/script/tag/list.js') }}
+  {{ script('/src/client/admin/script/category/list.js') }}
 {% endblock %}
 
 {% block main %}
   {{ DataTable({
-      id: 'tableTag',
-      tableTitle: 'Tags',
+      id: 'tableCategory',
+      tableTitle: 'Categories',
       columns: [
-        'Tag Name',
+        'Category Name',
         'Created By',
         'Created At',
         'Actions'
       ],
       tableTop: {
         enable: true,
-        addLink: '/admin/tag/add'
+        addLink: '/admin/category/add'
       }    
     }) 
   }}

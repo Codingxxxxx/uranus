@@ -21,9 +21,25 @@ function getCategoryByName(categoryName) {
   return CategoryModel.findOne({ categoryName: new RegExp(`^${categoryName}$`, 'i') }).lean();
 }
 
+/**
+ * Get category pagination
+ * @param {number} limit 
+ * @param {number} offset 
+ * @returns {Promise<Object[]>}
+ */
+function getPagination(limit, offset) {
+  return CategoryModel.paginate({}, {
+    lean: true,
+    populate: 'createdBy',
+    limit,
+    offset
+  });
+}
+
 const CategoryRepository = {
   create,
-  getCategoryByName
+  getCategoryByName,
+  getPagination
 };
 
 module.exports = {

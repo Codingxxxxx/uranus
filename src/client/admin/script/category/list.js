@@ -1,19 +1,18 @@
 import { jQuery } from '../../../shared/libs/jquery';
-import { getDefaultContent } from '../core/constant';
 import { createColumnImage } from '../core/custom-datatable';
 import { getUserImageObjectPath } from '../core/cdn';
 import { formatTableDate } from '../core/date-utils';
 
-const tableId = '#tableTag';
+const tableId = '#tableCategory';
 
 function initDataTable() {
   jQuery(tableId).DataTable({
     ajax: {
-      url: '/admin/tag/list'
+      url: '/admin/category/list'
     },
     columns: [
       {
-        data: 'tagName'
+        data: 'categoryName'
       },
       {
         data: 'createdBy',

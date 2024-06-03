@@ -84,7 +84,7 @@ router.get('/categories', async(req, res, next) => {
 router.get('/category/list', async(req, res, next) => {
   try {
     const { limit, offset, draw } = req.paginationParams;
-    const { totalPages, totalDocs, docs } = await TagRepository.getPagination(limit, offset);
+    const { totalPages, totalDocs, docs } = await CategoryRepository.getPagination(limit, offset);
     res.status(200).json({
       data: {
         pagination: {
