@@ -2,8 +2,9 @@ console.table(require('dotenv').config().parsed);
 const express = require('express');
 const app = express();
 const { connect } = require('mongoose');
-
+const { existsSync, mkdirSync } = require('fs');
 const { AppConfig } = require('./const');
+const path = require('path');
 const {
   initVite,
   initNunjucks,
@@ -35,6 +36,11 @@ initNunjucks(app);
 initFileUpload(app);
 
 async function startServer() {
+  // create temp dir for file upload
+  if (!existsSync(path.join(__dirname, '../../tmp_files'))) {
+    mkdirSync(path.join(__dirname, '../../tmp_files'));
+  }
+
   // connect db
   await connect(AppConfig.MONGO_URI)
     .then(() => {
